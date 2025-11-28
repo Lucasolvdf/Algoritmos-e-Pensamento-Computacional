@@ -1,11 +1,13 @@
-#include <stdio.h>
-#include <math.h>
+#include <stdio.h>   // Biblioteca padrão de entrada e saída
+#include <math.h>    // Biblioteca matemática para funções como pow, sqrt, sin etc.
 
 int main() {
-    int opcao;
-    double a, b, resultado;
+    int opcao;              // Variável para armazenar a opção escolhida no menu
+    double a, b, resultado; // Variáveis genéricas usadas nas operações
 
+    // Loop principal do programa (executa até o usuário escolher sair)
     do {
+        // Exibição do menu com 20 operações
         printf("\n=== Calculadora com 20 Operacoes ===\n");
         printf("1. Soma (a + b)\n");
         printf("2. Subtracao (a - b)\n");
@@ -29,69 +31,80 @@ int main() {
         printf("20. Hipotenusa (sqrt(a^2 + b^2))\n");
         printf("0. Sair\n");
         printf("Escolha uma opcao: ");
-        scanf("%d", &opcao);
+        
+        scanf("%d", &opcao); // Lê a opção do usuário
 
+        // Se o usuário escolher 0, o programa é encerrado
         if (opcao == 0) {
             printf("Encerrando a calculadora.\n");
             break;
         }
 
+        // Seleção da operação usando switch-case
         switch(opcao) {
+
             case 1: // Soma
                 printf("Digite dois numeros: ");
                 scanf("%lf %lf", &a, &b);
                 resultado = a + b;
                 printf("Resultado: %.6lf\n", resultado);
                 break;
-            case 2: // Subtracao
+
+            case 2: // Subtração
                 printf("Digite dois numeros: ");
                 scanf("%lf %lf", &a, &b);
                 resultado = a - b;
                 printf("Resultado: %.6lf\n", resultado);
                 break;
-            case 3: // Multiplicacao
+
+            case 3: // Multiplicação
                 printf("Digite dois numeros: ");
                 scanf("%lf %lf", &a, &b);
                 resultado = a * b;
                 printf("Resultado: %.6lf\n", resultado);
                 break;
-            case 4: // Divisao
+
+            case 4: // Divisão
                 printf("Digite dois numeros (dividendo e divisor): ");
                 scanf("%lf %lf", &a, &b);
-                if (b == 0) {
+                if (b == 0) {  // Verifica divisão por zero
                     printf("Erro: divisao por zero nao e permitida.\n");
                 } else {
                     resultado = a / b;
                     printf("Resultado: %.6lf\n", resultado);
                 }
                 break;
-            case 5: // Potencia
+
+            case 5: // Potência
                 printf("Digite a base e o expoente: ");
                 scanf("%lf %lf", &a, &b);
-                resultado = pow(a, b);
+                resultado = pow(a, b); // Função pow da math.h
                 printf("Resultado: %.6lf\n", resultado);
                 break;
+
             case 6: // Raiz quadrada
                 printf("Digite um numero: ");
                 scanf("%lf", &a);
-                if (a < 0) {
+                if (a < 0) { // Somente números >= 0 têm raiz real
                     printf("Erro: nao existe raiz quadrada de numero negativo.\n");
                 } else {
                     resultado = sqrt(a);
                     printf("Resultado: %.6lf\n", resultado);
                 }
                 break;
+
             case 7: // Logaritmo natural
                 printf("Digite um numero: ");
                 scanf("%lf", &a);
-                if (a <= 0) {
+                if (a <= 0) { // Log somente para valores positivos
                     printf("Erro: logaritmo de numero nao positivo nao e definido.\n");
                 } else {
                     resultado = log(a);
                     printf("Resultado: %.6lf\n", resultado);
                 }
                 break;
-            case 8: // Logaritmo base 10
+
+            case 8: // Log base 10
                 printf("Digite um numero: ");
                 scanf("%lf", &a);
                 if (a <= 0) {
@@ -101,46 +114,53 @@ int main() {
                     printf("Resultado: %.6lf\n", resultado);
                 }
                 break;
-            case 9: // Exponencial
+
+            case 9: // Exponencial (e^a)
                 printf("Digite um numero: ");
                 scanf("%lf", &a);
                 resultado = exp(a);
                 printf("Resultado: %.6lf\n", resultado);
                 break;
+
             case 10: // Valor absoluto
                 printf("Digite um numero: ");
                 scanf("%lf", &a);
                 resultado = fabs(a);
                 printf("Resultado: %.6lf\n", resultado);
                 break;
+
             case 11: // Seno
                 printf("Digite um angulo em radianos: ");
                 scanf("%lf", &a);
                 resultado = sin(a);
                 printf("Resultado: %.6lf\n", resultado);
                 break;
+
             case 12: // Cosseno
                 printf("Digite um angulo em radianos: ");
                 scanf("%lf", &a);
                 resultado = cos(a);
                 printf("Resultado: %.6lf\n", resultado);
                 break;
+
             case 13: // Tangente
                 printf("Digite um angulo em radianos: ");
                 scanf("%lf", &a);
                 resultado = tan(a);
                 printf("Resultado: %.6lf\n", resultado);
                 break;
+
             case 14: // Arco seno
                 printf("Digite um numero entre -1 e 1: ");
                 scanf("%lf", &a);
-                if (a < -1 || a > 1) {
+                if (a < -1 || a > 1) { // Domínio do arcsin
                     printf("Erro: valor fora do dominio do arco seno.\n");
                 } else {
                     resultado = asin(a);
                     printf("Resultado (radianos): %.6lf\n", resultado);
                 }
                 break;
+
             case 15: // Arco cosseno
                 printf("Digite um numero entre -1 e 1: ");
                 scanf("%lf", &a);
@@ -151,19 +171,23 @@ int main() {
                     printf("Resultado (radianos): %.6lf\n", resultado);
                 }
                 break;
+
             case 16: // Arco tangente
                 printf("Digite um numero: ");
                 scanf("%lf", &a);
                 resultado = atan(a);
                 printf("Resultado (radianos): %.6lf\n", resultado);
                 break;
+
             case 17: { // Fatorial
                 int n, fatorial = 1;
                 printf("Digite um inteiro positivo: ");
                 scanf("%d", &n);
-                if (n < 0) {
+
+                if (n < 0) { // Fatorial não existe para negativos
                     printf("Erro: fatorial nao definido para numeros negativos.\n");
                 } else {
+                    // Loop para calcular n!
                     for (int i = 1; i <= n; i++) {
                         fatorial *= i;
                     }
@@ -171,29 +195,33 @@ int main() {
                 }
                 break;
             }
+
             case 18: // Parte inteira (floor)
                 printf("Digite um numero: ");
                 scanf("%lf", &a);
                 resultado = floor(a);
                 printf("Resultado: %.0lf\n", resultado);
                 break;
+
             case 19: // Porcentagem
                 printf("Digite o valor total e a porcentagem: ");
                 scanf("%lf %lf", &a, &b);
                 resultado = (a * b) / 100.0;
                 printf("Resultado: %.6lf\n", resultado);
                 break;
+
             case 20: // Hipotenusa
                 printf("Digite os catetos a e b: ");
                 scanf("%lf %lf", &a, &b);
-                resultado = hypot(a, b);
+                resultado = hypot(a, b); // Função da math.h que calcula sqrt(a² + b²)
                 printf("Resultado (hipotenusa): %.6lf\n", resultado);
                 break;
-            default:
+
+            default: // Caso o usuário insira opção inválida
                 printf("Opcao invalida. Tente novamente.\n");
         }
 
-    } while (1);
+    } while (1); // Loop infinito com condição de saída dentro do switch
 
-    return 0;
+    return 0; // Fim do programa
 }
